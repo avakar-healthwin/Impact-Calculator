@@ -10,8 +10,20 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
+    "-": "0.0.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.29",
+    "@fortawesome/free-brands-svg-icons": "^5.13.1",
+    "@fortawesome/free-solid-svg-icons": "^5.13.1",
+    "@fortawesome/vue-fontawesome": "^0.1.10",
+    "boxicons": "^2.0.5",
+    "firebase": "^7.15.5",
+    "firebase-tools": "^8.4.3",
+    "inline-worker": "^1.1.0",
+    "save": "^2.4.0",
     "vue": "^2.5.11",
-    "vue-router": "^3.3.4"
+    "vue-recorder": "^0.1.0",
+    "vue-router": "^3.3.4",
+    "vuex": "^3.4.0"
   },
   "browserslist": [
     "> 1%",
@@ -26,11 +38,11 @@
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
     "file-loader": "^1.1.4",
-    "node-sass": "^4.14.1",
-    "sass-loader": "^6.0.7",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
     "vue-loader": "^13.0.5",
     "vue-template-compiler": "^2.4.4",
     "webpack": "^3.6.0",
-    "webpack-dev-server": "^3.1.11"
+    "webpack-dev-server": "^2.9.1"
   }
 }

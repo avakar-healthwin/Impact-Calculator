@@ -9,31 +9,42 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
-     <div class="title">
+    <router-link to="/"><i class='bx fa bxs-home top1-i'></i></router-link>
+    <dir class="header">
+      <div class="title">Impact Calculator</div>
+      <div class="menu">
+        <router-link to="/"><i class='bx fa bxs-home'></i></router-link>
+         <i v-on:click="openq2()" class="fas fa-arrow-left arrow"></i>
+      </div>
+    </dir>
+     <div class="title1">
          <img src="../assets/bike.gif" alt="">
      </div>
      <div class="container">
          <div class="left">
              <h1>How many active motorcycles do you have? </h1>
+             <input class="scooty-bike" type="number" id="members" name="members" placeholder="Enter Here" min="1" v-model="Motorcycles.bikes"><br>
              <div class="slidecontainer">
-                 <div class="number">{{number}}</div>
-                <input type="range" min="1" max="10" value="10" class="slider" id="myRange" v-model="number">
+                 <div class="number">{{Motorcycles.bikes}}</div>
+                <input type="range" min="0" max="5" value="10" class="slider" id="myRange" v-model="Motorcycles.bikes">
             </div>
          </div>
          <div class="right">
              <h1>How many active scooties do you have?</h1>
+             <input class="scooty-bike" type="number" id="members" name="members" placeholder="Enter Here" min="1" v-model="Motorcycles.scooty"><br>
              <div class="slidecontainer">
-                 <div class="number">{{number2}}</div>
-                <input type="range" min="1" max="10" value="10" class="slider" v-model="number2">
+                 <div class="number">{{Motorcycles.scooty}}</div>
+                <input type="range" min="0" max="5" value="10" class="slider" v-model="Motorcycles.scooty">
             </div>
          </div>
      </div>
-     <button> Next </button>
-     <router-link to="/q2"><i class="fas fa-arrow-left"></i></router-link>
- </div>
+     <div class="btn"><button v-on:click="passBikes()"> Next </button></div>
+     <router-link to="/q2"><i class="fas fa-arrow-left top-i"></i></router-link>
+    </div>
 </template>
 
 <script>
+import { bus } from '../main'
 
 export default {
     components: {
@@ -41,19 +52,50 @@ export default {
     },
   data () {
     return {
-      number:1,
-      number2:1,
+      Motorcycles:{
+            bikes:"",
+            scooty:"",
+        }
     }
+  },
+  methods:{
+      passBikes(){
+        let vue = this;
+        bus.$emit('pass-bikes',this.Motorcycles);
+        vue.$router.push('/loading');
+      },
+      openq2(){
+          this.$router.replace('/q2');
+      }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+*{
+      font-family: Titillium Web;
+      margin: 0px;
+      padding: 0px;
+    }
+    .top1-i{
+      position: absolute;
+      font-size: 24px;
+      top: 40px;
+      left: 40px;
+      color: white;
+      padding: 10px;
+      border-radius: 50%;
+      // background: #7ABBB0;
+    }
+    .top1-i:hover{
+      cursor: pointer;
+      background: #7ABBB0;
+    }
 .main-container{
     background: #40050C;
     height: 100vh;
 }
-.title{
+.title1{
     max-width: 100%;
     height: 20%;
     background: rgba(191, 41, 46, 0.7);
@@ -62,7 +104,7 @@ export default {
     justify-content: center;
     align-items: center;
 }
-.title img{
+.title1 img{
     height: 100px;
     width: 100px;
     max-width: 100%;
@@ -77,15 +119,19 @@ export default {
 .container .left{
     flex: 50%;
     max-width: 50%;
+    // display: flex;
+    // flex-flow: column nowrap;
+    // justify-content: start;
 }
 
 //---------for range slider
 .slidecontainer{
-    width: 90%;
+    max-width: 80%;
+    width: 80%;
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-evenly;
-    padding-left: 50px;
+    justify-content: space-around;
+    padding-top: 20px;
 }
 .number{
     padding-left: 20px;
@@ -156,12 +202,24 @@ h1{
     flex: 50%;
     max-width: 50%;
 }
+.scooty-bike{
+    display: none;
+}
+.header{
+    display: none;
+}
+.btn{
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 button{
     width: 30%;
     border: 2px solid #70D3CB;
     box-sizing: border-box;
     border-radius: 50px;
-    height: 50px;
+    height: 60px;
     display: flex;
     justify-content: center;
     font-family: Titillium Web;
@@ -172,6 +230,7 @@ button{
     /* identical to box height */
 
     display: flex;
+    justify-content: center;
     align-items: center;
     text-align: center;
     letter-spacing: 0.05em;
@@ -179,17 +238,18 @@ button{
     color: #FFFFFF;
     background: #40050C;
     text-align: center;
-    position: relative;
-    left: 40%;
-    top: 5%;
-
+    // position: relative;
+    // left: 34%;
+    // top: 10%;
+    outline: none;
+    
 }
 button:hover{
     background: #70D3CB;
     cursor: pointer;
     
 }
-i{
+.top-i{
     position: absolute;
     left: 4%;
     bottom: 8%;
@@ -199,5 +259,166 @@ i{
     border: 1px solid #70D3CB;
     padding: 6px;
     border-radius: 50%;
+}
+@media all and (max-width: 1200px){
+    .container{
+        display: flex;
+        flex-flow: row wrap;
+    }
+.container .left{
+    flex: 100%;
+    max-width: 100%;
+    margin-bottom: 40px;
+}
+.container .right{
+    flex: 100%;
+    max-width: 100%;
+}
+
+h1{
+    font-size: 36px;
+    line-height: 45px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+button{
+    width: 60%;
+}
+}
+
+@media all and (max-width: 600px){
+
+.slidecontainer{
+    display: none;
+}
+.top1-i{
+    display: none;
+}
+.scooty-bike{
+    display: block;
+    border: 2px solid #FFD9A0;
+    box-sizing: border-box;
+    border-radius: 50px;
+    width: 100%;
+    max-width: 100%;
+    height: 50px;
+    outline: none;
+    background: transparent;
+    font-family: Titillium Web;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 37px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.05em;
+
+    color: #FFFFFF;
+}
+::placeholder{
+      color: white;
+      text-align: center;
+    }
+    .container{
+        padding: 30px;
+        padding-bottom: 0px;
+    }
+    .container .left{
+        margin-bottom: 0px;
+    }
+    .container .right{
+        margin-bottom: 0px;
+    }
+    h1{
+        margin-right: 0px;
+        font-size: 28px;
+        line-height: 40px;
+        max-width: 100%;
+        margin-top: 0px;
+        margin-bottom: 15px;
+    }
+    .btn{
+        margin-top: 0px;
+        padding: 30px;
+        padding-top: 0px;
+        
+    }
+    .btn button{
+        width: 100%;
+        height: 60px;
+        border: 2px solid #70D3CB;
+        box-sizing: border-box;
+        border-radius: 50px;
+        margin-bottom: 10px;
+    }
+    .title1{
+        margin-top: 40px;
+    }
+ //-------------------------navbar----------------------
+  .header{
+    width: 100%;
+    height: 50px;
+    background: #661016;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+  }
+  .header .title{
+    padding-left: 10px;
+    font-family: Titillium Web;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 50px;
+    /* or 167% */
+
+    display: flex;
+    align-items: center;
+
+    color: #FFFFFF;
+  }
+  .header .menu{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    // padding-top: 0px;
+    // padding-top: 15px;
+    // padding-top: 18px;
+    padding: 10px;
+    
+  }
+  a{
+    text-decoration: none;
+  }
+  .header .menu i{
+    flex: 50%;
+    padding-top: 0px;
+    max-width: 50%;
+    font-size: 26px;
+    color: white;
+    display: flex;
+    align-self: center;
+    // align-items: center;
+    // justify-content: center;
+    box-sizing: border-box;
+    border-radius:50%;
+    padding: 4px;
+    margin-right: 10px;
+  }
+  .header .menu .arrow{
+    border: 1px solid #70D3CB;
+  }
+  //----------------------navbar--------------------------------------------
+  .top-i{
+      display: none;
+  }
+  h1{
+      padding-left: 0px;
+  }
 }
 </style>

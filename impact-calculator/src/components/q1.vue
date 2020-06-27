@@ -9,24 +9,34 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    <router-link to="/"><i class='bx fa bxs-home top1-i'></i></router-link>
+     <dir class="header">
+      <div class="title">Impact Calculator</div>
+      <div class="menu">
+        <router-link to="/"><i class='bx fa bxs-home'></i></router-link>
+         <i v-on:click="openHome()" class="fas fa-arrow-left arrow"></i>
+      </div>
+    </dir>
+
    <div class="image">
      <img src="../assets/familylines.png" alt="">
-     
    </div>
    <div class="container">
      <div class="left">
        <h1>How many people are there in your family?</h1>
      </div>
      <div class="right">
-       <input type="number" id="members" name="members" placeholder="Enter Here"><br><br>
-       <button> Next</button>
+       <input type="number" id="members" name="members" placeholder="Enter Here" min="1" v-model="members"><br>
+       <button v-on:click="passMembers()"> Next</button>
      </div>
    </div>
-   <router-link to="/"><i class="fas fa-arrow-left"></i></router-link>
+   <router-link to="/"><i class="fas faa fa-arrow-left top2-i"></i></router-link>
  </div>
 </template>
 
+
 <script>
+import { bus } from '../main'
 
 export default {
     components: {
@@ -34,7 +44,17 @@ export default {
     },
   data () {
     return {
-      
+      members:"",
+    }
+  },
+  methods:{
+    passMembers(){
+      let vue = this;
+      bus.$emit('pass-members',this.members);
+      vue.$router.push('/q2');
+    },
+    openHome(){
+      this.$router.push('/');
     }
   }
 }
@@ -43,20 +63,34 @@ export default {
 <style lang="scss" scoped>
     *{
       font-family: Titillium Web;
+      margin: 0px;
+      padding: 0px;
     }
-    .main-container{
-      left: 0px;
-      right: 0px;
+.main-container{
+  height: 100%;
+}
+.top1-i{
+      position: absolute;
+      font-size: 24px;
+      top: 40px;
+      left: 40px;
+      color: white;
+      padding: 10px;
+      border-radius: 50%;
+      // background: #7ABBB0;
     }
+    .top1-i:hover{
+      cursor: pointer;
+      background: #7ABBB0;
+    }
+    .header{
+  display:none;
+}
     .image{
       width: 100%;
       height: 100vh;
       background: #40050C;
-      // background-image: url('../assets/familylines.png');
-      // background: #40050C;
-      // background-repeat: no-repeat;
-      // background-attachment: fixed;
-      // background-size: 100% 70%;
+    
     }
     .image img{
       width: 100%;
@@ -72,8 +106,8 @@ export default {
       border-radius: 50px 50px 0px 0px;
       position: absolute;
       top: 60vh;
-      left: 7px;
-      right: 7px;
+      left: 0px;
+      right: 0px;
       bottom: 0;
       padding: 40px;
       padding-top: 20px;
@@ -85,10 +119,11 @@ export default {
       max-width: 50%;
     }
     .left h1{
-      max-width: 70%;
+      margin-left:10%;
+      max-width: 80%;
       font-family: Titillium Web;
       font-style: normal;
-      font-weight: bold;
+      font-weight: 800;
       font-size: 4vw;
       line-height: 75px;
       /* or 146% */
@@ -101,13 +136,11 @@ export default {
       padding-top: 0px;
     }
     .right{
-      flex: 50%;
       max-width: 50%;
       display: flex;
       flex-flow: column nowrap;
-      align-items: baseline;
-      
-      justify-content: center;
+     justify-content: center;
+      align-items: center;
     }
     .right input{
       font-size: 30px;
@@ -117,19 +150,20 @@ export default {
       border-radius: 50px;
       background: rgba(191, 41, 46, 0.7);
       color: white;
-      max-width: 60%;
-      width: 20vw;
+      width: 25vw;
       align-self: center;
       outline: none;
-      padding-left: 10px;
+      // padding-left: 10px;
       text-align: center;
     }
     ::placeholder{
       color: white;
       text-align: center;
     }
+    input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
     .right button{
-      max-width: 80%;
       background: #7ABBB0;
       border: 2px solid #70D3CB;
       box-sizing: border-box;
@@ -138,9 +172,7 @@ export default {
       text-align: center;
       font-weight: 900;
       padding: 10px;
-      width: 400px;
-      position: relative;
-      left: 9.3vw;
+      width: 500px;
       background: rgba(191, 41, 46, 0.7);
       color: white;
       outline: none;
@@ -149,7 +181,7 @@ export default {
       background: #70D3CB;
       cursor: pointer;
     }
-    i{
+    .top2-i{
       font-size: 20px;
       color: white;
       padding: 5px;
@@ -161,14 +193,22 @@ export default {
       border-radius: 50%;
     }
 
-    @media all and (max-width: 500px){
+    @media all and (max-width: 600px){
+      .main-container{
+        margin-top: 40px;
+      }
       .image img{
+        margin-top:40px;
         max-width: 100%;
         width: 400px;
         height: auto;
       }
       .container{
-        top: 50%;
+        display:flex;
+        align-items:center;
+        top: 30%;
+        margin-bottom: 0px;
+        padding-bottom: 0px;
       }
       .container .left{
         flex: 100%;
@@ -176,47 +216,151 @@ export default {
         padding-left: 0px;
       }
       .container .left h1{
+        // margin-top:10%;
         max-width: 90%;
         padding-left: 0px;
-        font-size: 30px;
-        line-height: 40px;
+        font-size: 35px;
+        line-height: 50px;
+        margin-left: 0px;
+        margin-top: 0px;
+        margin-right: 0px;
+        max-width: 100%;
       }
       .container .right{
-        flex: 100%;
-        max-width: 100%;
+        width: 100%;
         display: flex;
-        flex-flow: column nowrap;
-        justify-content: start;
       }
       .container .right input{
-        max-width: 60%;
-        height: 40px;
-        width: 200px;
+        height: 50px;
+        width: 324px;
         font-size: 20px;
         line-height: 30px;
         letter-spacing: .2ex;
         font-weight: 800;
       }
       .container .right button{
-        height: 45px;
-        width: 280px;
-        max-width: 80%;
+        height: 70px;
+        width: 324px;
         font-size: 24px;
         padding-top: 0px;
         font-weight: 900;
         letter-spacing: .3ex;
         top: -20px;
       }
-    //   i{
-    //   font-size: 20px;
-    //   color: white;
-    //   padding: 5px;
-    //   border: 1px solid #70D3CB;
-    //   box-sizing: border-box;
-    //   position: absolute;
-    //   bottom: 10%;
-    //   left: 10%;
-    //   border-radius: 50%;
-    // }
+
     }
+
+
+@media all and (max-width:600px){
+  
+// .header{
+//   top: 0px;
+//    width: 100%;
+//   height: 55px;
+//   position: fixed;
+//   display:flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   background: #661016;
+// }
+  button{
+    font-size: 40px;
+  }
+  .top1-i, .top2-i{
+    display: none;
+  }
+    .imp{
+      width:100%;
+      margin-left:5%;
+    font-family: Titillium Web;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 20px;
+    color: #FFFFFF;
+    }
+
+
+//     .menu{
+//   margin-right: 4%;
+//   display:flex;
+//   justify-content:center;
+//   align-items:center;
+// }
+    .hi{
+    font-size: 20px;
+    color: white;
+    padding: 5px;
+    border: 1px solid #70D3CB;
+    box-sizing: border-box;
+    border-radius: 50%;
+    margin:10px;
+    }
+    .top-i{
+      display: none;
+    }
+    //-------------------------navbar----------------------
+  .header{
+    width: 100%;
+    height: 50px;
+    background: #661016;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 20;
+  }
+  .header .title{
+    padding-left: 10px;
+    font-family: Titillium Web;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 50px;
+    /* or 167% */
+
+    display: flex;
+    align-items: center;
+
+    color: #FFFFFF;
+  }
+  .header .menu{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    // padding-top: 0px;
+    // padding-top: 15px;
+    // padding-top: 18px;
+    padding: 10px;
+  }
+  a{
+    text-decoration: none;
+  }
+  .header .menu i{
+    flex: 50%;
+    padding-top: 0px;
+    max-width: 50%;
+    font-size: 26px;
+    color: white;
+    display: flex;
+    align-self: center;
+    // align-items: center;
+    // justify-content: center;
+    box-sizing: border-box;
+    border-radius:50%;
+    padding: 4px;
+    margin-right: 10px;
+  }
+  .header .menu .arrow{
+    border: 1px solid #70D3CB;
+  }
+  //----------------------navbar--------------------------------------------
+
+}
+
+
+
+
 </style>
