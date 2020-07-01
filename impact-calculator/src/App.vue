@@ -5,12 +5,12 @@
     <!-- <app-q2></app-q2> -->
     <!-- <app-q3></app-q3> -->
     <!-- <app-loading></app-loading> -->
-    <!-- <app-resultA></app-resultA> -->
+    <app-resultA></app-resultA>
     <!-- <app-loading2></app-loading2> -->
     <!-- <app-waste></app-waste> -->
     <!-- <app-carbon></app-carbon> -->
     <!-- <app-resultB></app-resultB> -->
-    <router-view :data="Details"></router-view>
+    <!-- <router-view :data="Details"></router-view> -->
   </div>
 </template>
 
@@ -71,6 +71,10 @@ export default {
 <style lang='scss'>
 body {
    margin: 0;
-   padding: 0;
+   padding:0;
 }
+// *{
+//   margin: 0;
+//    padding:0;
+// }
 </style>

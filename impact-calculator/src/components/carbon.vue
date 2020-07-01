@@ -18,9 +18,11 @@
     </dir>
       <div class="container">
           <h1>Carbon Footprint </h1>
-          <p>Your vehicles produce {{co2_by_vehicles}} kg of CO2 every year!</p>
+          <div class="para">
+            <p>Your vehicles produce <span>{{co2_by_vehicles}}</span> kg of CO2 every year!</p>
+            <p>It’s time you plant <span>{{no_of_trees}}</span> trees.</p>
+          </div>
           <img src="../assets/asset.png" alt="">
-          <p class="below-image">If you would plant {{no_of_trees}} trees, you could actually compensate the carbon dioxide emitted by your household vehicles! </p>
           <div class="button">
               <button v-on:click="replaceCarbon()" class="btn-1">See Waste Generated </button>
               <button v-on:click="openLoading2()" class="btn-2">Check your compost</button>
@@ -57,9 +59,11 @@ export default {
   },
   mounted(){
       this.co2_by_vehicles = (this.data.diesel_cars*5400) + (this.data.petrol_cars*4600) + (this.data.bikes*2030) + (this.data.scooty*1700);
-      this.co2_by_vehicles = this.co2_by_vehicles.toFixed(2);
+      // this.co2_by_vehicles = this.co2_by_vehicles.toFixed(2);
+      this.co2_by_vehicles = Math.round(this.co2_by_vehicles);
       this.no_of_trees = ((this.data.diesel_cars*5400)/25) + ((this.data.petrol_cars*4600)/25) + ((this.data.bikes*2030)/25) + ((this.data.scooty*1700)/25);
-      this.no_of_trees = this.no_of_trees.toFixed(2);
+      // this.no_of_trees = this.no_of_trees.toFixed(2);
+      this.no_of_trees = Math.round(this.no_of_trees);
   },
   props:['data']
 }
@@ -88,18 +92,18 @@ export default {
       cursor: pointer;
       background: #7ABBB0;
     }
-.main-container{
-    max-width: 100%;
-    height: 100vh;
-    // height: 100%;
-    background: #40050C;
-}
+    .main-container{
+        max-width: 100%;
+        height: 100vh;
+        // height: 100%;
+        background: #40050C;
+    }
 .container{
   display: flex;
   flex-flow: column nowrap;
 //   justify-content: center;
   align-items: flex-start;
-  justify-content: space-evenly;
+  justify-content: start;
   padding-left: 80px;
   padding-top: 50px;
 }
@@ -116,20 +120,36 @@ export default {
 
     color: #FFFFFF;
 }
+.container .para{
+  width: 90%;
+  max-width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-top: 20px;
+}
 .container p{
     font-family: Titillium Web;
     font-style: normal;
     font-weight: 300;
     font-size: 36px;
     line-height: 45px;
-    display: flex;
-    align-items: center;
+    // display: flex;
+    // align-items: center;
     letter-spacing: -0.015em;
 
     /* Gray 6 */
 
     color: #F2F2F2;
     max-width: 80%;
+}
+.container p span{
+  font-size: 48px;
+  padding: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+  border:  2px solid white;
+  border-radius: 50%;
 }
 .container img{
     // max-width: 80%;
@@ -140,39 +160,40 @@ export default {
     // left: 0px;
     // right: 0px;
     position: absolute;
-    top: 2%;
+    top: 35%;
     width: 80%;
     // height: auto;
-    height: 500px;
+    height: 380px;
     // margin-bottom: 30%;
 }
-.container .below-image{
-  font-family: Titillium Web;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 36px;
-    line-height: 45px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.015em;
+// .container .below-image{
+//   font-family: Titillium Web;
+//     font-style: normal;
+//     font-weight: 300;
+//     font-size: 36px;
+//     line-height: 45px;
+//     display: flex;
+//     align-items: center;
+//     letter-spacing: -0.015em;
 
-    /* Gray 6 */
+//     /* Gray 6 */
 
-    color: #F2F2F2;
-    max-width: 80%;
-    margin-top: 20%;
-}
+//     color: #F2F2F2;
+//     max-width: 80%;
+//     margin-top: 20%;
+// }
 .container .button{
     display: flex;
-    flex-flow: column;
-    justify-content: center;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
     align-items: center;
     max-width: 100%;
     padding-top: 10px;
-    width: 100%;
+    width: 80%;
+    margin-top: 29%;
 }
 .container .button .btn-1{
-  background: #661016;
+  background: rgba(29, 132, 143, 0.5);;
   border-radius: 64px;
   font-family: Titillium Web;
   font-style: normal;
@@ -184,15 +205,14 @@ export default {
   // display: flex;
   // align-items: center;
   // justify-content: center;
-  color: #FFFFFF;
+  color: #1D848F;
   max-width: 40%;
   height: 50px;
   width: 400px;
-  margin-bottom: 20px;
   border: none;
   outline: none;
   opacity: 0.5;
-  align-self: center;
+  max-width: 40%;
 }
 
 .container .button .btn-2{
@@ -201,7 +221,7 @@ export default {
   font-family: Titillium Web;
   font-style: normal;
   font-weight: 900;
-  font-size: 36px;
+  font-size: 30px;
   line-height: 55px;
   /* identical to box height */
 
@@ -211,23 +231,25 @@ export default {
   letter-spacing: 0.05em;
 
   color: #FFFFFF;
-  max-width: 60%;
-  height: 60px;
-  width: 550px;
+  max-width: 40%;
+  height: 50px;
+  width: 400px;
   justify-content: center;
-  border: 2px solid #7ABBB0;
+  border: 2px solid #1D848F;
   outline: none;
+  max-width: 40%;
 }
 .container .btn-2:hover{
-   background: #7ABBB0;
+   background: #1D848F;;
    cursor: pointer;
 }
 .container .btn-1:hover{
   cursor: pointer;
+  opacity: 0.8;
 }
 .last-i{
     position: absolute;
-    left: 4%;
+    left: 6%;
     bottom: 8%;
     color: white;
     font-size: 24px;
@@ -239,10 +261,13 @@ export default {
 @media all and (max-width: 1300px) and (min-width: 1100px){
   .container img{
     position: absolute;
-    top: 8%;
-    height: 400px;
+    top: 35%;
+    height: 350px;
     width: 80%;
     // margin-bottom: 30%;
+}
+.container .button{
+  margin-top: 30.5%;
 }
 }
 @media all and (max-width: 1100px){
@@ -265,8 +290,8 @@ export default {
     font-weight: 300;
     font-size: 28px;
     line-height: 40px;
-    display: flex;
-    align-items: center;
+    // display: flex;
+    // align-items: center;
     letter-spacing: -0.015em;
 
     /* Gray 6 */
@@ -277,26 +302,29 @@ export default {
 }
 .container img{
     position: absolute;
-    top: 8%;
+    top: 30%;
     height: 400px;
     width: 80%;
     // margin-bottom: 30%;
 }
-.container .below-image{
-  font-family: Titillium Web;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 28px;
-    line-height: 40px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.015em;
+// .container .below-image{
+//   font-family: Titillium Web;
+//     font-style: normal;
+//     font-weight: 300;
+//     font-size: 28px;
+//     line-height: 40px;
+//     display: flex;
+//     align-items: center;
+//     letter-spacing: -0.015em;
 
-    /* Gray 6 */
+//     /* Gray 6 */
 
-    color: #F2F2F2;
-    max-width: 80%;
-    margin-top: 35%;
+//     color: #F2F2F2;
+//     max-width: 80%;
+//     margin-top: 35%;
+// }
+.container .button{
+  margin-top: 43%;
 }
 .container .button .btn-1{
   background: #661016;
@@ -315,11 +343,11 @@ export default {
   max-width: 40%;
   height: 50px;
   width: 400px;
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
   border: none;
   outline: none;
   opacity: 0.5;
-  align-self: center;
+  // align-self: center;
 }
 .container .button .btn-2{
   background: #40050C;
@@ -337,9 +365,9 @@ export default {
   letter-spacing: 0.05em;
 
   color: #FFFFFF;
-  max-width: 60%;
-  height: 60px;
-  width: 550px;
+  max-width: 40%;
+  height: 50px;
+  width: 400px;
   justify-content: center;
   border: 2px solid #7ABBB0;
   outline: none;
@@ -523,8 +551,9 @@ export default {
     border: 1px solid #70D3CB;
   }
   //----------------------navbar--------------------------------------------
-}
-.last-i{
+  .last-i{
   display: none;
 }
+}
+
 </style>

@@ -26,7 +26,7 @@
              <input class="scooty-bike" type="number" id="members" name="members" placeholder="Enter Here" min="1" v-model="Motorcycles.bikes"><br>
              <div class="slidecontainer">
                  <div class="number">{{Motorcycles.bikes}}</div>
-                <input type="range" min="0" max="5" value="10" class="slider" id="myRange" v-model="Motorcycles.bikes">
+                <input type="range" min="0" max="5" value="" class="slider" id="myRange" v-model="Motorcycles.bikes">
             </div>
          </div>
          <div class="right">
@@ -34,7 +34,7 @@
              <input class="scooty-bike" type="number" id="members" name="members" placeholder="Enter Here" min="1" v-model="Motorcycles.scooty"><br>
              <div class="slidecontainer">
                  <div class="number">{{Motorcycles.scooty}}</div>
-                <input type="range" min="0" max="5" value="10" class="slider" v-model="Motorcycles.scooty">
+                <input type="range" min="0" max="5" value="" class="slider" v-model="Motorcycles.scooty">
             </div>
          </div>
      </div>
@@ -53,8 +53,8 @@ export default {
   data () {
     return {
       Motorcycles:{
-            bikes:"",
-            scooty:"",
+            bikes:0,
+            scooty:0,
         }
     }
   },
@@ -98,7 +98,7 @@ export default {
 .title1{
     max-width: 100%;
     height: 20%;
-    background: rgba(191, 41, 46, 0.7);
+    background: rgba(113, 209, 201, 0.9);
     border-radius: 0 0 50px 50px;
     display: flex;
     justify-content: center;
@@ -115,10 +115,12 @@ export default {
     max-width: 100%;
     flex-flow: row wrap;
     justify-content: space-evenly;
+    padding-left: 40px;
 }
 .container .left{
     flex: 50%;
     max-width: 50%;
+    
     // display: flex;
     // flex-flow: column nowrap;
     // justify-content: start;
@@ -149,12 +151,13 @@ export default {
 }
 .slider {
   -webkit-appearance: none;
-  width: 50%;
-  height: 10px;
+  width: 80%;
+  height: 20px;
   border-radius: 5px;
-  background: #d3d3d3;
+  background: #70D3CB;
+    // background: transparent;
   outline: none;
-  opacity: 0.7;
+//   opacity: 0.7;
   -webkit-transition: .2s;
   transition: opacity .2s;
   align-self: center;
@@ -167,18 +170,20 @@ export default {
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 23px;
-  height: 24px;
+  width: 60px;
+  height: 80px;
   border: 0;
-  background: url('../assets/logo.png');
+  background: url('../assets/arrow1.png');
+  background-size: 60px 80px;
+  background-color: #40050C;
   cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
-  width: 23px;
-  height: 24px;
+  width: 80px;
+  height: 100px;
   border: 0;
-  background: url('../assets/logo.png');
+  background: url('../assets/arrow1.png');
   cursor: pointer;
 }
 //------------end of range slider
@@ -196,7 +201,8 @@ h1{
     align-items: center;
 
     color: #FFFFFF;
-    padding-left: 80px;
+    padding-left: 100px;
+    text-align: start;
 }
 .container .right{
     flex: 50%;
@@ -209,14 +215,14 @@ h1{
     display: none;
 }
 .btn{
-    margin-top: 80px;
+    margin-top: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 button{
-    width: 30%;
-    border: 2px solid #70D3CB;
+    width: 35%;
+    border: 2px solid #1D848F;
     box-sizing: border-box;
     border-radius: 50px;
     height: 60px;
@@ -245,7 +251,7 @@ button{
     
 }
 button:hover{
-    background: #70D3CB;
+    background: #1D848F;
     cursor: pointer;
     
 }
@@ -346,7 +352,7 @@ button{
     }
     .btn button{
         width: 100%;
-        height: 60px;
+        height: 50px;
         border: 2px solid #70D3CB;
         box-sizing: border-box;
         border-radius: 50px;
@@ -421,4 +427,34 @@ button{
       padding-left: 0px;
   }
 }
+@media all and (max-width: 320px) , screen and (max-height:570px){
+    .header .title{
+        font-size: 20px;
+    }
+    .title1{
+        height: 20%;
+    }
+    h1{
+        font-size: 24px;
+        line-height: 30px;
+        max-width: 100%;
+    }
+    .scooty-bike{
+        height: 40px;
+    }
+    .btn button{
+        height: 40px;
+        font-size: 24px;
+    }
+    
+}
+@media all and (max-width: 1300px) and (min-width: 1200px){
+        h1{
+            font-size: 60px;
+            line-height: 80px;
+        }
+        .btn button{
+            width: 40%;
+        }
+    }
 </style>

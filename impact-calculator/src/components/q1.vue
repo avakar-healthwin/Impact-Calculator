@@ -263,8 +263,12 @@ export default {
 //   align-items: center;
 //   background: #661016;
 // }
-  button{
+ .container .right button{
     font-size: 40px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .top1-i, .top2-i{
     display: none;
@@ -360,7 +364,9 @@ export default {
 
 }
 
-
+button{
+  font-size: 30px;
+}
 
 
 </style>

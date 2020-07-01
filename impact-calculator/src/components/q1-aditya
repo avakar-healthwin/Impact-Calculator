@@ -1,0 +1,278 @@
+
+<template>
+ <div class="main-container">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" 
+        href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" 
+        integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" 
+        crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+     <div class="header">
+      <div class="icons">
+         <h1 class="imp"> Impact Calculator</h1>
+        </div>
+        <!-- <img   src="" alt=""> -->
+        <div class="menu">
+        <router-link to="/"><i class='bx hi fa bxs-home'></i></router-link>
+         <router-link to="/"><i class="fas hi fa-arrow-left"></i></router-link>
+      </div>
+    </div>
+
+   <div class="image">
+     <img src="../assets/familylines.png" alt="">
+   </div>
+   <div class="container">
+     <div class="left">
+       <h1>Family Size</h1>
+     </div>
+     <div class="right">
+     	<div class="cont">
+     		<div class="cont2">
+     			<button class="btn"> 3</button>
+     			<button class="btn"> 4</button>
+     			<button class="btn"> 6</button>
+     			<button class="btn"> 8</button>
+     		</div>
+       <button class="button" v-on:click="passMembers()"> Next</button>
+   </div>
+     </div>
+   </div>
+ </div>
+</template>
+
+
+<script>
+import { bus } from '../main'
+
+export default {
+    components: {
+      
+    },
+  data () {
+    return {
+      members:"",
+    }
+  },
+  methods:{
+    passMembers(){
+      let vue = this;
+      bus.$emit('pass-members',this.members);
+      vue.$router.push('/q2');
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+
+  .header{
+  display:none;
+}
+
+ *{
+      font-family: Titillium Web;
+      margin: 0px;
+      padding: 0px;
+    }
+
+  .main-container{
+  	 background-color: #40050C;
+  	 width:100%;
+        height:100vh;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:flex-start;
+    }
+    .image{
+    	margin-top:20px;
+    	width:95%;
+    	height:55vh;
+    }
+    img{
+    	width:inherit;
+    }
+    .container{
+      width: 100%;
+      height:inherit;
+      display: flex;
+      justify-content: space-evenly;
+      background: rgba(113, 209, 201, 0.9);
+      border-radius: 50px 50px 0px 0px;
+    }
+
+    .left{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      width: 50%;
+    }
+    .left h1{
+      font-family: Titillium Web;
+      font-style: normal;
+      font-weight: 800;
+      font-size: 60px;
+      line-height: 75px;
+      display: flex;
+      align-items: center;
+      color: #FFFFFF;
+      padding-top: 0px;
+    }
+    .right{
+      width: 50%;
+      display: flex;
+      flex-direction:column;
+     justify-content: center;
+      align-items: center;
+
+    }
+    .cont{
+    	max-width:500px;
+    	display:flex;
+    	flex-direction:column;
+    	justify-content:center;
+    	align-items:center;
+    }
+    .cont2{
+    	display:flex;
+    	width:100%;
+    	justify-content:center;
+    }
+    .btn{
+	width: 85px;
+	height: 59px;
+	background:transparent;
+	border: 2px solid #1D848F;
+	box-sizing: border-box;
+	border-radius: 50px;
+	margin-right:8px;
+	font-style: normal;
+	font-weight: 900;
+	font-size: 28px;
+	line-height: 55px;
+	/* identical to box height */
+
+	display: flex;
+	justify-content:center;
+	align-items: center;
+	text-align: center;
+	letter-spacing: 0.05em;
+
+	color: #FFFFFF;
+
+    }
+    .right .button{
+      background: #7ABBB0;
+      border: 2px solid #1D848F;
+      box-sizing: border-box;
+      border-radius: 50px;
+      font-size: 30px;
+      text-align: center;
+      font-weight: 900;
+      padding: 10px;
+      width: 400px;
+      background: transparent;
+      color: white;
+      outline: none;
+      margin-top:20px;
+    }
+    .right .button:hover{
+      background: #70D3CB;
+      cursor: pointer;
+    }
+
+@media all and (max-width:900px){
+
+.container{
+	width:100%;
+	flex-direction:column;
+	border-radius: 50px 50px 0px 0px;
+}
+.left{
+	width:100%;
+	//background:blue;
+}
+.right{
+	width:100%;
+//	background:green;
+}
+
+
+
+///////////////////////////////////////////
+
+.image{
+	margin-top:55px;
+	position:absolute;
+	height:60vh;
+}
+.container{
+	margin-top:40%;
+
+}
+
+.header{
+  z-index:100;
+   top: 0px;
+   width: 100%;
+  height: 55px;
+  position: fixed;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #40050C;
+}
+
+    .imp{
+      margin-left:10%;
+      width:100%;
+    font-family: Titillium Web;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 20px;
+    color: #FFFFFF;
+    }
+
+    .menu{
+  margin-right: 5%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+    .hi{
+    font-size: 20px;
+    color: white;
+    padding: 5px;
+    border: 1px solid #70D3CB;
+    box-sizing: border-box;
+    border-radius: 50%;
+    margin:10px;
+    }
+}
+
+@media all and (max-width:500px){
+
+.left h1{
+	font-size:50px;
+}
+
+.btn{
+	width:75px;
+	height:50px;
+}
+.right{
+	justify-content:flex-start;
+	margin-top:-30%;
+}
+.right .button{
+	width:330px;
+}
+
+}
+
+</style>

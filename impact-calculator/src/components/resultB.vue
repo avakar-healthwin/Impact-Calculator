@@ -18,12 +18,13 @@
     </dir>
     <img class="top-img" src="../assets/resultB.gif" alt="">
     <div class="title1">
-         <h1>Congratulations! You have contributed significantly to the welfare of the society!</h1>
+         <h1>Congratulations!</h1>
      </div>
     <div class="container">
-      <h1>Your compost can fertilize {{no_of_fields}} crop fields and help farmers save {{amount}} amount.</h1>
-      <img src="../assets/balance1.png" alt="">
-      <h2>You just reduced your household waste by 40%! </h2>
+      <!-- <h1>Your compost can fertilize {{no_of_fields}} crop fields and help farmers save {{amount}} amount.</h1> -->
+      <h2>You just reduced your household waste by <span> 40%!</span></h2>
+      <img src="../assets/3.png" alt="">
+      <!-- <h2>You just reduced your household waste by 40%! </h2> -->
     </div>
     <router-link to="/resultA"><i class="fas fa-arrow-left  last-i"></i></router-link>
   </div>
@@ -71,9 +72,11 @@ export default {
   mounted(){
     this.total_waste_gen = this.data.members*0.5*365*70*0.00110231;
     this.no_of_fields = (this.total_waste_gen*0.7*0.4)/2.625;
-    this.no_of_fields = this.no_of_fields.toFixed(2);
+    // this.no_of_fields = this.no_of_fields.toFixed(2);
+    this.no_of_fields = Math.round(this.no_of_fields);
     this.amount = this.total_waste_gen*0.7*0.4*50*1000;
-    this.amount = this.amount.toFixed(2);
+    // this.amount = this.amount.toFixed(2);
+    this.amount = Math.round(this.amount);
     this.saveData();
   },
   props:['data']
@@ -110,7 +113,7 @@ export default {
 .title1{
     max-width: 100%;
     height: 20%;
-    background: rgba(191, 41, 46, 0.7);
+    background: rgba(113, 209, 201, 0.9);
     border-radius: 0 0 50px 50px;
     display: flex;
     justify-content: center;
@@ -121,7 +124,7 @@ export default {
   font-family: Titillium Web;
   font-style: normal;
   font-weight: 900;
-  font-size: 36px;
+  font-size: 60px;
   line-height: 55px;
   display: flex;
   align-items: center;
@@ -133,10 +136,12 @@ color: #FFFFFF;
 .top-img{
   position: absolute;
   top: 0;
-  left: 45%;
+  left: 30%;
   text-align: center;;
-  height: 150px;
-  width: 200px;
+  // height: 150px;
+  // width: 200px;
+  height: 70%;
+  width: 40%;
 }
 .container{
   display: flex;
@@ -144,27 +149,28 @@ color: #FFFFFF;
   justify-content: center;
   align-items: center;
 }
-.container h1{
-  padding-top: 20px;
-  max-width: 70%;
-  font-family: Titillium Web;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 36px;
-  line-height: 55px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  letter-spacing: 0.05em;
+// .container h1{
+//   padding-top: 20px;
+//   max-width: 70%;
+//   font-family: Titillium Web;
+//   font-style: normal;
+//   font-weight: 600;
+//   font-size: 36px;
+//   line-height: 55px;
+//   display: flex;
+//   align-items: center;
+//   text-align: center;
+//   letter-spacing: 0.05em;
 
-  color: #70D3CB;
+//   color: #70D3CB;
 
-}
+// }
 .container img{
-  max-width: 80%;
-  width: 650px;
-  height: 600px;
+  margin-top: 30px;
+  max-width: 60%;
   height: auto;
+  height: 400px;
+  width: 400px;
 }
 .container h2{
   padding-top: 20px;
@@ -180,7 +186,16 @@ color: #FFFFFF;
   letter-spacing: 0.05em;
 
   color: #FFFFFF;
+}
+.container h2 span{
+  margin-left: 20px;
 
+  padding: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background: #1D848F;
+  box-sizing: border-box;
+  border-radius: 50%;
 }
 .last-i{
     position: absolute;
@@ -193,17 +208,57 @@ color: #FFFFFF;
     padding: 6px;
     border-radius: 50%;
 }
+@media screen and (max-width: 1300px) and (min-width: 1000px){
+  .title1 h1{
+    font-size: 50px;
+    line-height: 40px;
+    max-width: 60%;
+  }
+  .top-img{
+  position: absolute;
+  top: 0;
+  left: 30%;
+  text-align: center;;
+  // height: 150px;
+  // width: 200px;
+  height: 70%;
+  width: 40%;
+}
+  // .container h1{
+  //   font-size: 24px;
+  //   line-height: 30px;
+  //   max-width: 80%;
+  // }
+  .container h2{
+    padding-top: 60px;
+    font-size: 38px;
+    line-height: 40px;
+    max-width: 80%;
+  }
+  .container img{
+  margin-top: 30px;
+  max-width: 60%;
+  height: auto;
+  height: 400px;
+  width: 400px;
+}
+}
 @media screen and (max-width: 1000px) and (min-width: 500px){
   .title1 h1{
-    font-size: 36px;
+    font-size: 44px;
     line-height: 45px;
     max-width: 80%;
   }
   .top-img{
-    left: 35%;
-    width: 150px;
-    height: 150px;
-  }
+  position: absolute;
+  top: 0;
+  left: 30%;
+  text-align: center;;
+  // height: 150px;
+  // width: 200px;
+  height: 70%;
+  width: 40%;
+}
   .container h1{
     font-size: 24px;
     line-height: 30px;
@@ -213,7 +268,7 @@ color: #FFFFFF;
     padding-top: 20px;
   }
   .container h2{
-    padding-top: 60px;
+    padding-top: 20px;
     font-size: 28px;
     line-height: 35px;
     max-width: 80%;

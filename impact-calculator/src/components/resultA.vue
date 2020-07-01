@@ -21,19 +21,19 @@
         <div class="left">
             <div class="img-container" v-on:click="openWaste()">
                 <h1>Waste Generated</h1>
-                <img src="../assets/waste.svg" alt="">
+                <img src="../assets/1.png" alt="">
             </div>
         </div>
         <div class="right">
             <div class="img-container" v-on:click="openCarbon()">
                 <h1>Carbon Footprint</h1>
-                <img src="../assets/carbon-footprint.svg" alt="">
+                <img src="../assets/2.png" alt="">
             </div>
         </div>
     </div>
     <div class="last-container">
         <h1>Get some great insights!</h1>
-        <button v-on:click="openLoading2">Go ahead and check how much waste you can compost</button>
+        <!-- <button v-on:click="openLoading2">Go ahead and check how much waste you can compost</button> -->
     </div>
     <router-link to="/"><i class="fas fa-arrow-left last-i last-i"></i></router-link>
   </div>
@@ -117,7 +117,7 @@ export default {
     height: auto;
     box-sizing: border-box;
     padding: 20px;
-    border: 1px solid #70D3CB;
+    border: 1px solid #FFD9AB;
     box-sizing: border-box;
     border-radius: 64px;
     display: flex;
@@ -130,11 +130,27 @@ export default {
     left: 8%;
 }
 .img-container:hover{
-    background: rgba(191, 41, 46, 0.3);
+    background: rgba(102, 16, 22, 0.5);
     border: 1px solid rgba(191, 41, 46, 0.3);
     cursor: pointer;
 }
-.container h1{
+.container .left h1{
+    max-width: 100%;
+    // width: 80%;
+    font-family: Titillium Web;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 60px;
+    line-height: 75px;
+    /* or 150% */
+
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    color: #7B260B;
+}
+.container .right h1{
     max-width: 100%;
     // width: 80%;
     font-family: Titillium Web;
@@ -147,12 +163,12 @@ export default {
     display: flex;
     align-items: center;
 
-    color: #FFFFFF;
+    color: #ADDB44;;
     margin-top: 5px;
     margin-bottom: 0px;
 }
-img{
-    max-width: 100%;
+.container img{
+    max-width: 80%;
     height: 300px;
     width: 300px;
     // color-adjust: #FFD9AB;
@@ -164,12 +180,14 @@ img{
 }
 .last-container{
     position: absolute;
-    top: 75vh;
+    top: 80vh;
+    // padding-top: 20px;
+    // padding-bottom: 28px;
     max-width: 100%;
     right: 0px;
     bottom: 0px;
     left: 0px;
-    background: rgba(191, 41, 46, 0.7);
+    background: rgba(113, 209, 201, 0.9);
     border-radius: 50px 50px 0px 0px;
     display: flex;
     flex-flow: column nowrap;
@@ -187,8 +205,7 @@ img{
     align-items: center;
     text-align: center;
     letter-spacing: 0.05em;
-
-    color: #70D3CB;
+    color: white;
     margin-bottom: 15px;
     margin-top: 0px;
 
@@ -243,10 +260,13 @@ img{
         .top1-i{
             display: none;
         }
+        .container{
+            padding-left: 0px;
+        }
         .img-container{
             // height: 250px;
             // width: 250px;
-            width: 75%;
+            width: 80%;
             height: auto;
             // padding-left: 10px;
             padding: 20px;
@@ -254,9 +274,10 @@ img{
             // padding-left: 30px;
             // padding-right: 30px;
             border-radius: 40px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             padding-top: 10px;
         }
+        
         .img-container h1{
             margin-left: 0px;
         }
@@ -274,16 +295,16 @@ img{
             margin-left: 0px;
         }
         .last-container{
-            top: 85vh;
+            top: 90vh;
             border-radius: 30px 30px 0px 0px;
         }
         .last-container h1{
             font-size: 24px;
             line-height: 30px;
-            position: absolute;
-            // top: 75vh;
-            top: -5vh;
-            left: 17%;
+            // position: absolute;
+            // // top: 75vh;
+            // top: -5vh;
+            // left: 17%;
             margin-left: 0px;
         }
         .last-container button{
@@ -297,6 +318,7 @@ img{
         .last-i{
             display: none;
         }
+        .container{margin-top: 5px;}
 
 .header{
     width: 100%;
@@ -360,7 +382,11 @@ img{
         }
     }
         @media all and (max-width: 1100px) and (min-width: 800px){
-            .container h1{
+            .container .left h1{
+                font-size: 36px;
+                line-height: 45px;
+            }
+            .container .right h1{
                 font-size: 36px;
                 line-height: 45px;
             }
@@ -372,6 +398,21 @@ img{
                 font-size: 36px;
                 line-height: 45px;
                 max-width: 60%;
+            }
+        }
+        @media all and (max-width: 800px){
+            .container{
+                display: flex;
+                flex-flow: column nowrap;
+                justify-content: space-evenly;
+            }
+            .container .left h1{
+                font-size: 28px;
+                line-height: 36px;
+            }
+            .container .right h1{
+                font-size: 28px;
+                line-height: 36px;
             }
         }
             // @media all and (max-width: 800px) and (min-width: 60px){
@@ -389,4 +430,35 @@ img{
             //     max-width: 60%;
         //     // }
         // }
+        @media all and (max-width: 800px) and (min-width: 500px){
+            .img-container{
+                height: 300px;
+                width: 350px;
+            }
+
+            
+        }
+        @media all and (max-width: 320px) , all and (max-height: 600px){
+            .img-container{
+               width: 80%;
+               height: 200px;
+            }
+            .img-container img{
+                width: 70%;
+                height: auto;
+            }
+            .container{
+                padding-left: 20px;
+            }
+            .container .img-container h1{
+                font-size: 22px;
+            }
+            .header .title{
+                    font-size: 20px;
+                }
+                .last-container h1{
+                font-size: 18px;
+                line-height: 20px;
+            }
+        }
 </style>

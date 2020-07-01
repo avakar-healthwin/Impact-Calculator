@@ -11,20 +11,20 @@
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
     <router-link to="/"><i class='bx fa bxs-home top1-i'></i></router-link>
     <div class="pc">
-  <div class="container">
-    <div class="left">
-        <h1>Welcome to the Ecological Impact Calculator</h1>
-        <p>Get an insight about the impacts of your household-waste. Let’s save the world by adopting to Waste Management practices!</p>
-        <router-link to="/q1"><button>Calculate Your Impact! </button></router-link>
-    </div>
-    <div class="right">
-      <div class="image">
-        <img src="../assets/tree.gif" alt="" width="600" height="750">
+      <div class="container">
+        <div class="left">
+            <h1>Impact Calculator</h1>
+            <p>Get insights about the impact of your household waste.</p>
+            <router-link to="/q1"><button>Calculate Your Impact! </button></router-link>
+        </div>
+        <div class="right">
+          <div class="image">
+            <img src="../assets/tree.gif" alt="" width="615" height="750">
+        </div>
       </div>
     </div>
   </div>
-    </div>
-    <div class="mobile">
+  <div class="mobile">
       <dir class="header">
       <div class="title">Impact Calculator</div>
       <div class="menu">
@@ -39,7 +39,7 @@
       <button v-on:click="openq1()" >Calculate Your Impact!</button>
 
     </div>
-    </div>
+  </div>
 </div>
 </template>
 
@@ -92,7 +92,7 @@ body {
     .container{
       width:100%;
       height:100vh;
-      background:green;
+      // background:green;
       display: flex;
       flex-flow: row nowrap;
       align-items:flex-start;
@@ -100,35 +100,35 @@ body {
       margin-bottom: 0px;
     }
     .left{
-      background:blue;
+      // background:blue;
       flex: 60%;
       max-width: 60%;
-       height: 100vh;
+      height: 100vh;
       background:  #40050C;
-      padding-left: 80px;
+      // padding-left: 80px;
       margin-bottom: 0px;
       display: flex;
       flex-flow: column nowrap;
       justify-content: flex-start;
-      align-items: flex-start;
+      align-items: center;
     }
     .left h1{
-      margin-top:10%;
-      margin-left:3%;
+      margin-top:4%;
+      // margin-left:3%;
       max-width: 80%;
       font-family: Titillium Web;
       font-style: normal;
       font-weight: 900;
-      font-size: 60px;
-      line-height: 75px;
+      font-size: 75px;
+      line-height: 95px;
       display: flex;
       align-items: center;
       
       color: #FFFFFF;
     }
     .left p{
-      max-width: 85%;
-            margin-left:3%;
+      max-width: 60%;
+      // margin-left:3%;
       font-family: Titillium Web;
       font-style: normal;
       font-weight: 300;
@@ -136,16 +136,21 @@ body {
       line-height: 55px;
       display: flex;
       align-items: center;
-      letter-spacing: -0.015em;
+      letter-spacing: -0.019em;
 
       /* Gray 6 */
 
       color: #F2F2F2;
+      margin-top: 40px;
+      text-align: center;
+
     }
     .left button{
-      margin-top:7%;
-      margin-left:3%;
-      width: 606px;
+      margin-top:50%;
+      // margin-left:3%;
+      width: 540px;
+      // width: 80%;
+      // max-width: 80%;
       height:84px;
       max-width: 100%;
       font-family: Titillium Web;
@@ -161,15 +166,18 @@ body {
       letter-spacing: 0.05em;
       background: #40050C;
       color: #FFFFFF;
-      border: 2px solid #aabebb;
+      border: 2px solid #1D848F;
+      box-sizing: border-box;
       border-radius: 50px;
       outline: none;
+      align-self: flex-end;
+      
     }
     a{
       text-decoration: none;
     }
     .left button:hover{
-      background: #7ABBB0;
+      background: #1D848F;
       cursor: pointer;
     }
     .right{
@@ -185,7 +193,7 @@ body {
     }
     .right img{
       max-width: 100%;
-       height: 100vh;
+      height: 100vh;
      
     }
 @media all and (max-width: 600px){
@@ -343,5 +351,15 @@ body {
     border: 1px solid #70D3CB;
   }
   //----------------------navbar--------------------------------------------
+}
+@media all and (max-width: 1000px) and (min-width: 600px){
+  .left h1{
+    font-size: 50px;
+    line-height: 70px;
+  }
+  .left button{
+    height: 60px;
+    width: 400px;
+  }
 }
 </style>
